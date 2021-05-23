@@ -1,3 +1,5 @@
+package DataStructures.week4;
+
 import java.util.*;
 import java.io.*;
 
@@ -40,11 +42,7 @@ public class SubstringEquality {
 			hashes[0] = 0;
 			for (int i = 1; i < hashes.length; i++) {
 				hashes[i] = (((x*hashes[i-1]%p+p)%p + (long)s.charAt(i - 1))%p+p)%p;
-//				if (hashes[i] < 0) {
-//					System.out.println(i + ", " + hashes[i]);
-//				}
 			}
-//			System.out.println("All hashes positive!");
 			return hashes;
 		}
 
@@ -68,26 +66,12 @@ public class SubstringEquality {
 			int a = in.nextInt();
 			int b = in.nextInt();
 			int l = in.nextInt();
-//			if (solver.ask(a, b, l) != solver.askNaive(a, b, l)) {
-//				out.println("An error has been uncovered!");
-//				out.println("ask: " + solver.ask(a, b, l));
-//				out.println("askNaive: " + solver.askNaive(a, b, l));
-//				out.println(a + ", " + b + ", " + l);
-//				out.println("a: " + s.substring(a, a+l));
-//				out.println("aHash1: " + ((solver.h1[a+l]%solver.p1 - solver.p1Powers[l]*solver.h1[a]%solver.p1)+ solver.p1)% solver.p1;
-//				out.println("aHash2: " + ((solver.h2[a+l]%solver.p2 - solver.p2Powers[l]*solver.h2[a]%solver.p2)+solver.p1)%solver.p1;
-//				out.println("b: " + s.substring(b, b+l));
-//				out.println("bHash1: " + ((solver.h1[b+l]%solver.p1 - solver.p1Powers[l]*solver.h1[b]%solver.p1)+solver.p2)% solver.p2;
-//				out.println("bHash2: " + ((solver.h2[b+l]%solver.p2 - solver.p2Powers[l]*solver.h2[b]%solver.p2)+ solver.p2)% solver.p2;
-//				break;
-//			}
 			out.println(solver.ask(a, b, l) ? "Yes" : "No");
 		}
 		out.close();
 	}
 
 	static public void main(String[] args) throws IOException {
-//		createTestFile();
 	    new SubstringEquality().run();
 	}
 
@@ -96,8 +80,6 @@ public class SubstringEquality {
 		BufferedReader in;
 
 		FastScanner() throws FileNotFoundException {
-//			File inputFile = new File("/home/randybum/dev/Coursera/DataStructures/week4_hash_tables/test_input2.txt");
-//			in = new BufferedReader(new FileReader(inputFile));
 			in = new BufferedReader(new InputStreamReader(System.in));
 		}
 
@@ -109,23 +91,5 @@ public class SubstringEquality {
 		int nextInt() throws IOException {
 			return Integer.parseInt(next());
 		}
-	}
-
-	private static void createTestFile() throws IOException {
-		File testFile = new File("/home/randybum/dev/Coursera/DataStructures/week4_hash_tables/test_input2.txt");
-		testFile.createNewFile();
-		PrintWriter pw = new PrintWriter(testFile);
-		pw.println("abacabadabacaba");
-		pw.println(1240);
-		for (int i = 0; i < 15; i++) {
-		    for (int j = 0; j < 15; j++) {
-		        for (int k = 1; (i <= j ? j + k <= 15 : i + k <= 15); k++) {
-		            pw.println(i + " " + j + " " + k);
-		            pw.flush();
-		        }
-		    }
-		}
-		pw.flush();
-		pw.close();
 	}
 }
